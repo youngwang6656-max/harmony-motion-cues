@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Motion Cue</string>
+    <string name="notification_channel_name">Motion cue overlay</string>
+    <string name="notification_title">Motion cues active</string>
+    <string name="notification_text">Edge dots are responding to motion.</string>
+    <string name="notification_stop">Stop</string>
+</resources>
