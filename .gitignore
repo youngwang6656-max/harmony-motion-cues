@@ -1,1 +1,4 @@
 .worktrees/
+.toolchain/
+.gradle/
+app/build/
