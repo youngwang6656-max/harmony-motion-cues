@@ -27,5 +27,5 @@ data class MotionCueConfig(
     val attackTimeMs: Int = 90,
     val releaseTimeMs: Int = 420,
     val manualAlwaysOn: Boolean = true,
-    val colorMode: CueColorMode = CueColorMode.WHITE
+    val colorMode: CueColorMode = CueColorMode.AUTO
 )

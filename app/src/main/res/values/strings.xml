@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Motion Cue</string>
-    <string name="notification_channel_name">Motion cue overlay</string>
-    <string name="notification_title">Motion cues active</string>
-    <string name="notification_text">Edge dots are responding to motion.</string>
-    <string name="notification_stop">Stop</string>
+    <string name="app_name">防晕车提示</string>
+    <string name="notification_channel_name">防晕车悬浮提示</string>
+    <string name="notification_title">防晕车提示运行中</string>
+    <string name="notification_text">屏幕边缘圆点正在响应运动。</string>
+    <string name="notification_stop">停止</string>
+    <string name="main_title">防晕车提示</string>
+    <string name="overlay_permission_enabled">悬浮窗权限：已开启</string>
+    <string name="overlay_permission_disabled">悬浮窗权限：未开启</string>
+    <string name="open_overlay_permission">打开悬浮窗权限</string>
+    <string name="enable_motion_cues">启用防晕车提示</string>
+    <string name="sensitivity">灵敏度</string>
+    <string name="dot_size">圆点大小</string>
+    <string name="opacity">透明度</string>
+    <string name="movement">移动幅度</string>
+    <string name="use_auto_dots">自动选择黑/白圆点</string>
+    <string name="use_white_dots">使用白色圆点</string>
+    <string name="use_black_dots">使用黑色圆点</string>
 </resources>

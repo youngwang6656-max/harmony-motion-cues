@@ -6,8 +6,8 @@ class MotionCueSettings(context: Context) {
     private val prefs = context.getSharedPreferences("motion_cue_settings", Context.MODE_PRIVATE)
 
     fun load(): MotionCueConfig {
-        val modeName = prefs.getString("colorMode", CueColorMode.WHITE.name) ?: CueColorMode.WHITE.name
-        val mode = runCatching { CueColorMode.valueOf(modeName) }.getOrDefault(CueColorMode.WHITE)
+        val modeName = prefs.getString("colorMode", CueColorMode.AUTO.name) ?: CueColorMode.AUTO.name
+        val mode = runCatching { CueColorMode.valueOf(modeName) }.getOrDefault(CueColorMode.AUTO)
         return MotionCueConfig(
             dotRadiusDp = prefs.getFloat("dotRadiusDp", 5f),
             edgeInsetDp = prefs.getFloat("edgeInsetDp", 18f),

@@ -43,7 +43,7 @@ class MainActivity : Activity() {
         }
 
         root.addView(TextView(this).apply {
-            text = "Motion Cue"
+            text = getString(R.string.main_title)
             textSize = 28f
         })
 
@@ -54,12 +54,12 @@ class MainActivity : Activity() {
         root.addView(permissionStatus)
 
         root.addView(Button(this).apply {
-            text = "Open overlay permission"
+            text = getString(R.string.open_overlay_permission)
             setOnClickListener { openOverlaySettings() }
         })
 
         enableSwitch = Switch(this).apply {
-            text = "Enable motion cues"
+            text = getString(R.string.enable_motion_cues)
             textSize = 18f
             setPadding(0, 28, 0, 28)
             setOnCheckedChangeListener { button, checked ->
@@ -77,25 +77,29 @@ class MainActivity : Activity() {
         }
         root.addView(enableSwitch)
 
-        addSlider(root, "Sensitivity", 50, 220, (config.sensitivity * 100).toInt()) {
+        addSlider(root, getString(R.string.sensitivity), 50, 220, (config.sensitivity * 100).toInt()) {
             updateConfig(config.copy(sensitivity = it / 100f))
         }
-        addSlider(root, "Dot size", 3, 12, config.dotRadiusDp.toInt()) {
+        addSlider(root, getString(R.string.dot_size), 3, 12, config.dotRadiusDp.toInt()) {
             updateConfig(config.copy(dotRadiusDp = it.toFloat()))
         }
-        addSlider(root, "Opacity", 35, 100, (config.opacity * 100).toInt()) {
+        addSlider(root, getString(R.string.opacity), 35, 100, (config.opacity * 100).toInt()) {
             updateConfig(config.copy(opacity = it / 100f))
         }
-        addSlider(root, "Movement", 16, 72, config.maxDisplacementDp.toInt()) {
+        addSlider(root, getString(R.string.movement), 16, 72, config.maxDisplacementDp.toInt()) {
             updateConfig(config.copy(maxDisplacementDp = it.toFloat()))
         }
 
         root.addView(Button(this).apply {
-            text = "Use white dots"
+            text = getString(R.string.use_auto_dots)
+            setOnClickListener { updateConfig(config.copy(colorMode = CueColorMode.AUTO)) }
+        })
+        root.addView(Button(this).apply {
+            text = getString(R.string.use_white_dots)
             setOnClickListener { updateConfig(config.copy(colorMode = CueColorMode.WHITE)) }
         })
         root.addView(Button(this).apply {
-            text = "Use black dots"
+            text = getString(R.string.use_black_dots)
             setOnClickListener { updateConfig(config.copy(colorMode = CueColorMode.BLACK)) }
         })
 
@@ -135,9 +139,9 @@ class MainActivity : Activity() {
     private fun updatePermissionStatus() {
         if (::permissionStatus.isInitialized) {
             permissionStatus.text = if (Settings.canDrawOverlays(this)) {
-                "Overlay permission: enabled"
+                getString(R.string.overlay_permission_enabled)
             } else {
-                "Overlay permission: disabled"
+                getString(R.string.overlay_permission_disabled)
             }
         }
     }

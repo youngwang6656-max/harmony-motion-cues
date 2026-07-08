@@ -1,8 +1,8 @@
 package com.local.motioncue
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
 
@@ -29,11 +29,8 @@ class MotionCueOverlayView(context: Context) : View(context) {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        paint.color = when (config.colorMode) {
-            CueColorMode.WHITE -> Color.WHITE
-            CueColorMode.BLACK -> Color.BLACK
-            CueColorMode.AUTO -> Color.WHITE
-        }
+        val isNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        paint.color = MotionCueColorResolver.resolve(config.colorMode, isNightMode).argb
         val dots = model.dots(width, height, resources.displayMetrics.density, state, config)
         for (dot in dots) {
             paint.alpha = (dot.alpha * 255).toInt().coerceIn(0, 255)
