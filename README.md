@@ -1,49 +1,60 @@
-# Motion Cue
+# 鸿蒙防晕车视觉提示
 
-Personal motion cue overlay for HarmonyOS 4.2 / Mate60 Pro+ using the Android compatibility layer.
+面向 HarmonyOS 4.2 / Huawei Mate 60 Pro+ 的全屏运动视觉提示应用，通过 Android 兼容层运行。应用读取设备运动传感器，在屏幕边缘绘制与车辆运动相对应的圆点，帮助减轻视觉与前庭感知不一致带来的不适。
 
-## Build
+> 本项目为个人实验项目，与 Apple、Huawei 无关，也不是医疗器械。实际效果因设备、系统版本、乘车环境和个人差异而异。
 
-Open this folder in Android Studio and run:
+## 当前功能
+
+- 使用加速度与旋转传感器驱动屏幕边缘圆点
+- 以前台服务形式持续运行，可覆盖在其他应用上方
+- 悬浮层支持触控穿透，不阻挡下层应用的点击和滑动
+- 中文操作界面
+- 自动根据系统深色/浅色模式选择白色或黑色圆点
+- 可调节灵敏度、移动幅度、圆点大小、数量和透明度
+- 支持手动选择自动、白色或黑色显示模式
+
+## 使用方法
+
+1. 安装并打开应用。
+2. 点击“开启悬浮窗权限”，允许应用显示在其他应用上层。
+3. 返回应用，打开“启用运动提示”。
+4. 切换到其他应用，确认圆点保留在屏幕边缘，同时下层页面仍可点击和滑动。
+5. 在实际乘车前先停车完成参数调整，请勿在驾驶过程中操作手机。
+
+## 构建
+
+使用 Android Studio 打开仓库并执行：
 
 ```bash
-gradle :app:assembleDebug
+gradle :app:testDebugUnitTest :app:assembleDebug
 ```
 
-If Android Studio prompts for Gradle sync, accept the Android Gradle Plugin and SDK downloads.
-
-The debug APK is generated at:
+Debug APK 输出位置：
 
 ```text
 app/build/outputs/apk/debug/app-debug.apk
 ```
 
-## Install
+最低 Android API 为 26，目标 API 为 33，编译 API 为 34，需要 JDK 17。
 
-With the phone connected and USB debugging enabled:
+## 安装
+
+手机已开启 USB 调试并连接电脑时执行：
 
 ```bash
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-If `adb` is not in PATH, install the APK through Android Studio, DevEco Studio, or the system package installer.
+也可以通过 Android Studio、DevEco Studio 或系统安装器安装 APK。
 
-## First Run
+## 已知限制
 
-1. Open Motion Cue.
-2. Tap Open overlay permission.
-3. Enable drawing over other apps for Motion Cue.
-4. Return to Motion Cue.
-5. Turn on Enable motion cues.
-6. Switch to another app and confirm dots remain on the screen edges.
+- “自动颜色”当前跟随系统深色/浅色模式，不会实时采样每个应用的页面背景。
+- HarmonyOS 可能在密码、支付等安全页面隐藏第三方悬浮层。
+- 不同系统版本对悬浮窗触控穿透的处理可能存在差异。
+- 当前仅针对 Mate 60 Pro+ / HarmonyOS 4.2 进行过安装验证。
 
-## Tuning
+## 隐私
 
-- Increase Sensitivity if the dots barely move in a car.
-- Decrease Sensitivity if the dots react to hand movement.
-- Increase Movement for a stronger visual cue.
-- Use white dots on dark apps and black dots on light apps.
-
-## Notes
-
-The overlay is intentionally touch-through, so it should not block taps or scrolling in other apps. HarmonyOS may still suppress overlays on secure screens.
+运动传感器数据仅在设备本地用于生成动画。本项目不包含网络请求、账号系统或数据上传功能。
